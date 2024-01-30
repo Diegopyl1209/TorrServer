@@ -37,7 +37,7 @@ jobs:
 
     - name: Build GoMobile app
       run: |
-        cd go
+        cd server
         go get golang.org/x/mobile/bind
         gomobile bind -target=android -o ../build/libs
 

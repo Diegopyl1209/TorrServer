@@ -11,7 +11,6 @@ import (
 	"github.com/gin-contrib/location"
 	"github.com/gin-gonic/gin"
 
-	"server/dlna"
 	"server/settings"
 	"server/web/msx"
 
@@ -21,7 +20,6 @@ import (
 	"server/web/api"
 	"server/web/auth"
 	"server/web/blocker"
-	"server/web/pages"
 	"server/web/sslcerts"
 
 	swaggerFiles "github.com/swaggo/files"     // swagger embed files
@@ -78,14 +76,11 @@ func Start() {
 	if routeAuth != nil {
 		api.SetupRoute(routeAuth)
 		msx.SetupRoute(routeAuth)
-		pages.SetupRoute(routeAuth)
+		//pages.SetupRoute(routeAuth)
 	} else {
 		api.SetupRoute(&route.RouterGroup)
 		msx.SetupRoute(&route.RouterGroup)
-		pages.SetupRoute(&route.RouterGroup)
-	}
-	if settings.BTsets.EnableDLNA {
-		dlna.Start()
+		//pages.SetupRoute(&route.RouterGroup)
 	}
 
 	route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
@@ -124,7 +119,6 @@ func Wait() error {
 }
 
 func Stop() {
-	dlna.Stop()
 	BTS.Disconnect()
 	waitChan <- nil
 }

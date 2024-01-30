@@ -11,7 +11,8 @@ import (
 	"server/web"
 )
 
-func Start(port, sslport, sslCert, sslKey string, sslEnabled, roSets, searchWA bool) {
+func Start(pathdb, port, sslport, sslCert, sslKey string, sslEnabled, roSets, searchWA bool) {
+	settings.Path = pathdb
 	settings.InitSets(roSets, searchWA)
 	if roSets {
 		log.TLogln("Enabled Read-only DB mode!")

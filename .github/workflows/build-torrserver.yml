@@ -40,13 +40,14 @@ jobs:
         cd server
         go get golang.org/x/mobile/bind
         gomobile init
-        gomobile bind -target=android -androidapi 33 -o ../build/libs
+        gomobile bind -target=android -androidapi 33 -o ../build/libs/server.aar
 
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add app/libs/mylibrary.aar
+        git add build/libs/server.aar
+        git add build/libs/server-sources.jar
         git commit -m "Add compiled library"
       
     - name: Push changes

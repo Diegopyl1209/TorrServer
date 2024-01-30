@@ -39,7 +39,7 @@ jobs:
       run: |
         cd server
         go get golang.org/x/mobile/bind
-        gomobile bind -target=android -o ../build/libs
+        gomobile bind -target=android -androidapi 33 -o ../build/libs
 
     - name: Commit changes
       run: |
